@@ -7,4 +7,5 @@ export default defineConfig({
     HstVue(),
     HstNuxt(),
   ],
+  setupFile: 'histoire.setup.ts'
 })

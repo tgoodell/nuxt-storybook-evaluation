@@ -1,14 +1,12 @@
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
-import Button from 'primevue/button';
+import { reactive } from 'vue'
 
 const state = reactive({
-  disabled: false,
   style: null,
   class: null,
-  label: "Hello World",
+  label: 'Hello World',
   icon: null,
-  iconPos: "left",
+  iconPos: 'left',
   iconClass: null,
   badge: null,
   badgeClass: null,
@@ -28,12 +26,11 @@ const state = reactive({
   unstyled: false
 })
 
-const message = ref('Meow!')
 </script>
 
 <template>
-  <Story>
-    <Variant>
+  <Story title="Button">
+    <Variant title="Blank Slate">
       <Button 
         :style="state.style"
         :class="state.class"
@@ -60,29 +57,29 @@ const message = ref('Meow!')
       />
 
       <template #controls>
-        Disabled: <input type="checkbox" v-model="state.disabled" />
-        <div>style: <input type="text" v-model="state.style" /></div>
-        <div>class: <input type="text" v-model="state.class" /></div>
-        <div>label: <input type="text" v-model="state.label" /></div>
-        <div>icon: <input type="text" v-model="state.icon" /></div>
-        <div>iconPos: <input type="text" v-model="state.iconPos" /></div>
-        <div>iconClass: <input type="text" v-model="state.iconClass" /></div>
-        <div>badge: <input type="text" v-model="state.badge" /></div>
-        <div>badgeClass: <input type="text" v-model="state.badgeClass" /></div>
-        <div>badgeSeverity: <input type="text" v-model="state.badgeSeverity" /></div>
-        <div>loading: <input type="checkbox" v-model="state.loading" /></div>
-        <div>loadingIcon: <input type="text" v-model="state.loadingIcon" /></div>
-        <div>link: <input type="checkbox" v-model="state.link" /></div>
-        <div>severity: <input type="text" v-model="state.severity" /></div>
-        <div>raised: <input type="checkbox" v-model="state.raised" /></div>
-        <div>rounded: <input type="checkbox" v-model="state.rounded" /></div>
-        <div>text: <input type="checkbox" v-model="state.text" /></div>
-        <div>outlined: <input type="checkbox" v-model="state.outlined" /></div>
-        <div>size: <input type="text" v-model="state.size" /></div>
-        <div>plain: <input type="checkbox" v-model="state.plain" /></div>
-        <div>pt: <input type="text" v-model="state.pt" /></div>
-        <div>ptOptions: <input type="text" v-model="state.ptOptions" /></div>
-        <div>unstyled: <input type="checkbox" v-model="state.unstyled" /></div>
+        style: <HstText v-model="state.style" />
+        class: <HstText v-model="state.class" />
+        label: <HstText v-model="state.label" />
+        icon: <HstText v-model="state.icon" />
+        iconPos: <HstText v-model="state.iconPos" />
+        iconClass: <HstText v-model="state.iconClass" />
+        badge: <HstText v-model="state.badge" />
+        badgeClass: <HstText v-model="state.badgeClass" />
+        badgeSeverity: <HstText v-model="state.badgeSeverity" />
+        loading: <HstCheckbox v-model="state.loading" />
+        loadingIcon: <HstText v-model="state.loadingIcon" />
+        link: <HstCheckbox v-model="state.link" />
+        severity: <HstText v-model="state.severity" />
+        raised: <HstCheckbox v-model="state.raised" />
+        rounded: <HstCheckbox v-model="state.rounded" />
+        text: <HstCheckbox v-model="state.text" />
+        outlined: <HstCheckbox v-model="state.outlined" />
+        size: <HstText v-model="state.size" />
+        plain: <HstCheckbox v-model="state.plain" />
+        pt: <HstText v-model="state.pt" />
+        ptOptions: <HstText v-model="state.ptOptions" />
+        unstyled: <HstCheckbox v-model="state.unstyled" />
+
       </template>
     </Variant>
   </Story>
