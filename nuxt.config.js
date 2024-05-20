@@ -10,7 +10,7 @@ export default defineNuxtConfig({
         unstyled: true
       },
       components: {
-        include: ['Button', 'inputnumber']
+        include: ['Button', 'AutoComplete']
       }
   },
   css: [
