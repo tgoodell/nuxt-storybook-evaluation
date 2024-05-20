@@ -21,4 +21,8 @@ Other takeaways and observations:
 
 - States are neat
     - They are saved and maintained between server restarts
-    - However, I could not get initial states properly working with the :init-state prop
+    - The thing about restoring states is that it only works at the moment with fields that are not saved as null
+        - If they are 'saved' as null, then they are not restored and the previous value of the field is maintained
+- Markdown rendering
+    - Standalone md pages are only refreshed when the server restarts
+    - md sections in *.story.vue pages dynamically refresh

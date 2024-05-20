@@ -10,7 +10,7 @@ export default defineNuxtConfig({
         unstyled: true
       },
       components: {
-        include: ['Button', 'AutoComplete']
+        include: ['Button', 'AutoComplete', 'Checkbox', 'Calendar', 'Radiobutton', 'Slider', 'InputText']
       }
   },
   css: [
