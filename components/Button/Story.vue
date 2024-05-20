@@ -1,6 +1,4 @@
 <script setup>
-import ButtonControls from './ButtonControls.vue';
-
 const props = defineProps({
   state: {
     type: Object,

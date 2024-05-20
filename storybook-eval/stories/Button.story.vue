@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { reactive } from 'vue'
-import ButtonStory from '../../components/ButtonStory.vue';
+import { computed, reactive, ref } from 'vue'
 
 // Base object for all of the variants
 const state = reactive({
@@ -28,24 +27,44 @@ const state = reactive({
   unstyled: false
 })
 
-const blankState = reactive(JSON.parse(JSON.stringify(state)));
-blankState.label = 'Hello World!';
+const name = ref("Button")
 
-const dangerState = reactive(JSON.parse(JSON.stringify(state)));
-dangerState.label = 'LAUNCH';
-dangerState.severity = 'danger';
-dangerState.raised = true;
+const blankState = reactive(JSON.parse(JSON.stringify(state)))
+blankState.label = 'Hello World!'
 
-const iconState = reactive(JSON.parse(JSON.stringify(state)));
-iconState.label = '';
-iconState.rounded = true;
-iconState.icon = 'pi pi-check';
-iconState.severity = 'info';
+const dangerState = reactive(JSON.parse(JSON.stringify(state)))
+dangerState.label = 'LAUNCH'
+dangerState.severity = 'danger'
+dangerState.raised = true
+
+const iconState = reactive(JSON.parse(JSON.stringify(state)))
+iconState.label = ''
+iconState.rounded = true
+iconState.icon = 'pi pi-check'
+iconState.severity = 'info'
+
+// TODO: Make a computed property that transforms the source of the component into the source of the Button
+// Can also just create it from scratch since we know state
+// Make a source code renderer - if we know the name of the component and the state with its keys, we know the source code
+
+function generateSourceCode(currName: string, currState: object) {
+  return `<${currName}
+${Object.keys(currState).map(key => {
+    if (currState[key] !== false && currState[key] !== null && currState[key] !== '') {
+      return `   :${key}='${currState[key]}'\n`
+    }
+    return ''
+  }).join('')}/>`
+}
+
+const blankSource = computed(() => { return generateSourceCode(name.value, blankState) })
+const dangerSource = computed(() => { return generateSourceCode(name.value, dangerState) })
+const iconSource = computed(() => { return generateSourceCode(name.value, iconState) })
 </script>
 
 <template>
   <Story title="Button">
-    <Variant title="Blank Slate">
+    <Variant title="Blank Slate" :source="blankSource">
       <ButtonStory :state="blankState" />
       <!-- Template for controls has to be outside of component -->
       <!-- Controls show up in right side panel -->
@@ -54,7 +73,7 @@ iconState.severity = 'info';
       </template>
     </Variant>
 
-    <Variant title="Danger Button">
+    <Variant title="Danger Button" :source="dangerSource">
       <ButtonStory :state="dangerState" />
       <!-- Template for controls has to be outside of component -->
       <!-- Controls show up in right side panel -->
@@ -63,7 +82,7 @@ iconState.severity = 'info';
       </template>
     </Variant>
 
-    <Variant title="Icon Button">
+    <Variant title="Icon Button" :source="iconSource">
       <ButtonStory :state="iconState" />
       <!-- Template for controls has to be outside of component -->
       <!-- Controls show up in right side panel -->
