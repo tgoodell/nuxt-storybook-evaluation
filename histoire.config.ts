@@ -7,5 +7,17 @@ export default defineConfig({
     HstVue(),
     HstNuxt(),
   ],
-  setupFile: 'histoire.setup.ts'
+  setupFile: 'histoire.setup.ts',
+  tree: {
+    groups: [
+      {
+        id: 'top',
+        title: '',
+      },
+      {
+        title: 'Components',
+        include: file => !file.title.includes('Serialize'),
+      },
+    ],
+  },
 })

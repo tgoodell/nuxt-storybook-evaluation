@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, reactive, ref } from 'vue'
+import generateSourceCode from '../../utils/generateSourceCode'
 
 // Base object for all of the variants
 const state = reactive({
@@ -43,20 +44,6 @@ iconState.rounded = true
 iconState.icon = 'pi pi-check'
 iconState.severity = 'info'
 
-// TODO: Make a computed property that transforms the source of the component into the source of the Button
-// Can also just create it from scratch since we know state
-// Make a source code renderer - if we know the name of the component and the state with its keys, we know the source code
-
-function generateSourceCode(currName: string, currState: object) {
-  return `<${currName}
-${Object.keys(currState).map(key => {
-    if (currState[key] !== false && currState[key] !== null && currState[key] !== '') {
-      return `   :${key}='${currState[key]}'\n`
-    }
-    return ''
-  }).join('')}/>`
-}
-
 const blankSource = computed(() => { return generateSourceCode(name.value, blankState) })
 const dangerSource = computed(() => { return generateSourceCode(name.value, dangerState) })
 const iconSource = computed(() => { return generateSourceCode(name.value, iconState) })
@@ -92,3 +79,15 @@ const iconSource = computed(() => { return generateSourceCode(name.value, iconSt
     </Variant>
   </Story>
 </template>
+
+<docs lang="md">
+  # Primevue Button
+
+  Please visit [the Primevue documentation](https://primevue.org/button/) for specific documentation questions.
+
+  Here, there are three different Button variants to give you an idea of what this component can be used for.
+
+  1. Blank State: Simple 'Hello World' blue button
+  2. Danger Button: Button that says 'LAUNCH' with a drop shadow and danger background
+  3. Icon Button: A button with an info background and a checkmark icon
+</docs>

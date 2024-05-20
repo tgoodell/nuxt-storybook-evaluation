@@ -1,4 +1,5 @@
 <script setup>
+import { logEvent } from 'histoire/client'
 const props = defineProps({
   state: {
     type: Object,
@@ -9,6 +10,7 @@ const props = defineProps({
 
 <template>
     <Button 
+        @click="logEvent('Button click', $event)"
         :style="state.style"
         :class="state.class"
         :label="state.label"
